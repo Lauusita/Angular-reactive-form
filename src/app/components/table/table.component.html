@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Rol</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(usuario of listadoUsuarios; track $index){
+      <tr>
+        <td>{{usuario.id}}</td>
+        <td><img [src]="usuario.avatar" class="img-usuario"></td>
+        <td>{{usuario.name}}</td>
+        <td>{{usuario.role}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

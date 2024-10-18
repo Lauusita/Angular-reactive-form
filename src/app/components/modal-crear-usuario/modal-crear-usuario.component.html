@@ -1,0 +1,11 @@
+<div class="content">
+  <div >
+    <img [src]="gif" alt="">
+  </div>
+  <div mat-dialog-content>
+    <p>{{data.msg}}</p>
+  </div>
+  <div class="back-button" mat-dialog-actions>
+    <button mat-raised-button routerLink="/" type="submit" (click)="cancelar()">Volver al inicio</button>
+  </div>      
+</div>
