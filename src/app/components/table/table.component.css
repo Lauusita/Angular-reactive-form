@@ -1,0 +1,14 @@
+.content {
+  margin: 60px;
+  margin-top: 10px
+}
+
+.card {
+  border-color: rgb(149, 147, 161);
+  margin: 5px;
+  border-radius: 5px;
+}
+
+p:hover {
+  color: rgb(216, 93, 195);;
+}

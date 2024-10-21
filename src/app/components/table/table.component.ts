@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario';
 import { UsuariosService } from '../../usuarios.service';
-
+import { MatCardModule } from '@angular/material/card'
+import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCrearUsuarioComponent } from '../modal-crear-usuario/modal-crear-usuario.component';
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    ModalCrearUsuarioComponent
+  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
@@ -14,7 +21,7 @@ export class TableComponent implements OnInit {
   existeUsuario: boolean = false;
   listadoUsuarios: Usuario[] = []
 
-  constructor(private usuariosService: UsuariosService){}
+  constructor(private usuariosService: UsuariosService, private modal: MatDialog){}
   // listadoUsuarios: Usuario[] = [
   //   {id: 1, nombre: 'Elen Contreras'},
   //   {id: 2, nombre: 'John Doe'},
@@ -27,9 +34,17 @@ export class TableComponent implements OnInit {
 
   obtenerUsuarios(){
     this.usuariosService.obtenerUsuarios().subscribe({
-      next: (value: Usuario[]) =>{
-        console.log(value)
+      next: (value: Usuario[]) => {
         this.listadoUsuarios = value
+      }
+    })
+  }
+
+  mostrarInformacion(avatar: string, correo: string): void {
+    this.modal.open(ModalCrearUsuarioComponent, {
+      data: {
+        img: avatar,
+        msg: correo
       }
     })
   }

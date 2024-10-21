@@ -1,7 +1,13 @@
 *{
   background-color: rgb(25, 21, 46);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 17px;
+  border-radius: 50px;
+}
+
+nav {
+  margin: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .general {
@@ -22,22 +28,24 @@
 
 .content ul {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 500px;
   padding: 0;
+  margin: 0;
 }
 
 .content a {
   color: rgb(241, 241, 241);
   text-decoration: none;
-  text-align: center;
+  justify-content: center;
 }
 
 .content a:hover {
   border-radius: 20px;
-  padding: 10px;
-  background-color: rgb(252, 252, 252);
-  color: black;
+  color: rgb(157, 185, 245);
   text-decoration: none;
+  justify-content: center;
 }
 
 .content li {

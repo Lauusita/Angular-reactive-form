@@ -8,55 +8,67 @@
   <div class="container mt-5">
     <h2 class="text-center mb-4">Formulario de Usuario</h2>
     <form class="row g-3" [formGroup]="profileForm">
+
       <div class="col-md-6">
-        <label for="firstName" class="form-label">Nombre:</label>
-        <input type="text" formControlName="firstName" id="firstName" class="form-control" placeholder="Ingrese su nombre">
-        <div class="form-text">{{profileForm.value.firstName}}</div>
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="firstName" matInput placeholder="Nombre">
+            <mat-hint>{{profileForm.value.firstName}}</mat-hint>
+          </mat-form-field>
       </div>
 
       <div class="col-md-6">
-        <label for="lastName" class="form-label">Apellido:</label>
-        <input type="text" formControlName="lastName" id="lastName" class="form-control" placeholder="Ingrese su apellido">
-        <div class="form-text">{{profileForm.value.lastName}}</div>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input formControlName="lastName" matInput placeholder="Apellidos">
+          <mat-hint>{{profileForm.value.lastName}}</mat-hint>
+        </mat-form-field>
+      </div>
+
+      
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>ID (Máximo 10 dígitos)</mat-label>
+          <input type="number" formControlName="id" matInput placeholder="Id" (click)="validate()" id="uid">
+          <mat-hint class="form-text" id="validateId">{{profileForm.value.id}}</mat-hint>
+        </mat-form-field>
       </div>
 
       <div class="col-md-6">
-        <label for="id" class="form-label">ID (máx 10 dígitos):</label>
-        <input type="number" formControlName="id" id="uid" class="form-control" min="0" max="10000000000" maxlength="10" placeholder="Ingrese su ID" (click)="validate()">
-        
-        <div class="form-text" id="validateId">{{profileForm.value.id}}</div>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input type="date" formControlName="birthdate" matInput placeholder="Fecha de nacimiento">
+          <mat-hint>{{profileForm.value.birthdate}}</mat-hint>
+        </mat-form-field>
       </div>
 
       <div class="col-md-6">
-        <label for="birthdate" class="form-label">Fecha de Nacimiento:</label>
-        <input type="date" formControlName="birthdate" id="birthdate" class="form-control">
-        <div class="form-text">{{profileForm.value.birthdate}}</div>
+        <mat-form-field class="w-100">
+          <mat-label>País</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="Colombia">Colombia</mat-option>
+            <mat-option value="Argentina">Argentina</mat-option>
+          </mat-select>
+          <mat-hint>{{profileForm.value.country}}</mat-hint>
+        </mat-form-field>
       </div>
 
       <div class="col-md-6">
-        <label for="country" class="form-label">País:</label>
-        <select id="country" formControlName="country" class="form-select">
-          <option value="" disabled selected>Seleccione su país</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Argentina">Argentina</option>
-        </select>
-        <div class="form-text">{{profileForm.value.country}}</div>
-      </div>
+        <mat-form-field class="w-100">
+          <mat-label>Género</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="Women">Women</mat-option>
+            <mat-option value="Male">Male</mat-option>
+          </mat-select>
+          <mat-hint>{{profileForm.value.gender}}</mat-hint>
+        </mat-form-field>
 
-      <div class="col-md-6">
-        <label for="gender" class="form-label">Género:</label>
-        <select id="gender" formControlName="gender" class="form-select">
-          <option value="" disabled selected>Seleccione su género</option>
-          <option value="Women">Women</option>
-          <option value="Male">Male</option>
-        </select>
-        <div class="form-text">{{profileForm.value.gender}}</div>
       </div>
-
+      
       <!-- VALIDACIÓN -->
       <section class="validation col-12">
         <p class="text-muted">Complete el formulario de manera correcta para habilitar el botón.</p>
-        <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!profileForm.valid" (click)="openModal()">Enviar</button>
+        <button mat-raised-button class="btn btn-secondary" type="submit" [disabled]="!profileForm.valid" (click)="openModal()">Enviar</button>
       </section>
     </form>
   </div>

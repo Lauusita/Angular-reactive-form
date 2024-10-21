@@ -15,8 +15,6 @@ export class ModalCrearUsuarioComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ){}
 
-  gif = "assets/send.gif"
-
   cancelar() {
     this.dialogRef.close();
   }
