@@ -1,0 +1,24 @@
+<div class="content">
+  @for (item of list; track $index) {
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>id: {{item.id}}</mat-card-subtitle>
+          
+          <img mat-card-sm-image src={{item.image}}> 
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{item.description}}
+        <mat-chip-set aria-label="Fish selection">
+          <mat-chip>$ {{item.price}}</mat-chip>
+        </mat-chip-set> 
+      </mat-card-content>
+      <mat-card-content class="more-details">
+        <button mat-raised-button [routerLink]= "['/detalles', item.id]">More</button>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>
+<router-outlet></router-outlet>
