@@ -5,9 +5,9 @@
       <form [formGroup]="form">
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input type="email" matInput formControlName="email" placeholder="Ingresa tu usuario" />
-          @if (!form.valid) {
-            <mat-error>Please enter a valid email address</mat-error>
+          <input type="username" matInput formControlName="username" placeholder="Ingresa tu usuario" />
+          @if (form.get('username')?.hasError('required')) {
+            <mat-error>Please enter a valid username address</mat-error>
           }
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
@@ -15,7 +15,7 @@
         <mat-form-field class="w-100" appearance="fill"> 
           <mat-label>Enter your password</mat-label>
           <input formControlName="password" matInput [type]="hide() ? 'password' : 'text'" />
-          @if (!form.valid) {
+          @if (form.get('password')?.hasError('required') || form.get('password')?.hasError('minLength')) {
             <mat-error>Please enter a valid password</mat-error>
           }
           <button
@@ -30,6 +30,6 @@
         </mat-form-field>
       </form>
       <br>
-      <button class="submmit-button" [disabled]="!form.valid" (click)="openModal()">Submmit</button>
+      <button class="submmit-button" [disabled]="!form.valid" (click)="openModal()" (click)="login()">Submmit</button>
     </div> 
   </main>

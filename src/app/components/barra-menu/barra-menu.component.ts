@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-barra-menu',
@@ -11,4 +12,10 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 export class BarraMenuComponent {
   logo = "assets/logo.png"
   logged = false
+
+  constructor(private readonly authService: AuthService){}
+
+  logout(){
+    this.authService.logout()
+  }
 }

@@ -1,0 +1,32 @@
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.squart {
+  border: 1px solid;
+  border-color: black;
+  width: 50%;
+}
+
+.squart-title {
+  border: 1px solid;
+  border-color: black;
+  padding: 10px;
+}
+
+.squart-img {
+  display: flex;
+  justify-content: center;
+}
+
+.product-info p {
+  padding: 10px;
+  width: 95%;
+  text-align: justify;
+  align-items: center;
+  justify-content: center;
+}
