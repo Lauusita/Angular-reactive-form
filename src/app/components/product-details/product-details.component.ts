@@ -13,7 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 export class ProductDetailsComponent implements OnInit {
   @Input() id!: string;
   data!: Products;
-  constructor(private productService: ProductosService) {}
+
+  constructor(private readonly productService: ProductosService) {}
 
   ngOnInit(): void {
     this.obtenerProducto()
