@@ -11,6 +11,9 @@
         <li>
           <a routerLink="/products">Productos</a>
         </li>
+        <li>
+          <a *ngIf="!logged" routerLink="/login"></a>
+        </li>
       </ul>
     </div>
     <div class="logo">

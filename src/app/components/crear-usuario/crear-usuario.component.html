@@ -69,7 +69,7 @@
       <!-- VALIDACIÓN -->
       <section class="validation col-12">
         <p class="text-muted">Complete el formulario de manera correcta para habilitar el botón.</p>
-        <button mat-raised-button class="btn btn-secondary" type="submit" [disabled]="!profileForm.valid" (click)="openModal()">Enviar</button>
+        <button mat-raised-button class="btn btn-secondary" [disabled]="!profileForm.valid" (click)="openModal()">Enviar</button>
       </section>
     </form>
   </div>

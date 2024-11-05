@@ -1,1 +1,35 @@
-<p>login works!</p>
+
+  <main>
+    <div class="content">
+      <img [src]="img" alt="">
+      <form [formGroup]="form">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Ingresa tu usuario" />
+          @if (!form.valid) {
+            <mat-error>Please enter a valid email address</mat-error>
+          }
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="fill"> 
+          <mat-label>Enter your password</mat-label>
+          <input formControlName="password" matInput [type]="hide() ? 'password' : 'text'" />
+          @if (!form.valid) {
+            <mat-error>Please enter a valid password</mat-error>
+          }
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+      <br>
+      <button class="submmit-button" [disabled]="!form.valid" (click)="openModal()">Submmit</button>
+    </div> 
+  </main>

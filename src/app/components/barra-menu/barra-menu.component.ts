@@ -10,4 +10,5 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 })
 export class BarraMenuComponent {
   logo = "assets/logo.png"
+  logged = false
 }
