@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 export const routes: Routes = [
   {
     path: "",
-    component: LoginComponent
+    component: TableComponent
   },
   {
     path: "create",

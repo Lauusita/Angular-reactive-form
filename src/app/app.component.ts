@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BarraMenuComponent } from './components/barra-menu/barra-menu.component';
 import { Usuario } from './interfaces/usuario';
 import { UsuariosService } from './usuarios.service';
 import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   existeUsuario: boolean = false;
   listadoUsuarios: Usuario[] = []
 
-  constructor(private usuariosService: UsuariosService){}
+  constructor(private usuariosService: UsuariosService, private readonly authService: AuthService, private readonly router: Router){}
   // listadoUsuarios: Usuario[] = [
   //   {id: 1, nombre: 'Elen Contreras'},
   //   {id: 2, nombre: 'John Doe'},
@@ -38,5 +39,9 @@ export class AppComponent implements OnInit {
         this.listadoUsuarios = value
       }
     })
+  }
+
+  isLoginPage(): boolean {
+    return this.router.url == "/login"
   }
 }

@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Login } from '../../interfaces/login';
+import { AuthResponse, Login } from '../../interfaces/login';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCrearUsuarioComponent } from '../modal-crear-usuario/modal-crear-usuario.component';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,20 +22,23 @@ export class LoginComponent {
   img = "assets/login.gif"
   hide = signal(true);
 
-
   formModel: Login = {
-    email: new FormControl(""),
-    password: new FormControl("")
+    username: new FormControl("") || "",
+    password: new FormControl("") || ""
   }
 
-  constructor(private modal: MatDialog){
-    this.form = this.buildForm(this.formModel)
-  }
-
-  buildForm(model: Login) {
-    return new FormGroup({
-      email: new FormControl(model.email.value, [Validators.required, Validators.email]),
-      password: new FormControl(model.password.value, [Validators.required, Validators.minLength(8)])
+  constructor(private modal: MatDialog, private fb: FormBuilder, private authService: AuthService, private router: Router){
+    this.form = this.fb.group({
+      username: new FormControl(this.formModel.username.value, 
+        [
+          Validators.required
+        ]
+      ),
+      password: new FormControl(this.formModel.password.value, 
+        [
+          Validators.required
+        ]
+      )
     })
   }
 
@@ -47,6 +52,18 @@ export class LoginComponent {
       data: {
         img: this.img,
         msg: "Bienvenido"
+      }
+    })
+  }
+
+  login() {
+    this.authService.login(this.form.value).subscribe({
+      next: (value: AuthResponse) => {
+        this.authService.setToken(value.token)
+        this.router.navigateByUrl('/products')
+      },
+      error(err) {
+        (err.status == 401) ? alert('Usuario y/o contraseña incorrecta') : alert('Error en el servidor')
       }
     })
   }
